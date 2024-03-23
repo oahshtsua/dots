@@ -1,0 +1,72 @@
+live_config_reload: true
+
+bell:
+  animation: "EaseOutExpo"
+  color: "0xffffff"
+  duration: 0
+
+colors:
+  draw_bold_text_with_bright_colors: false
+  cursor:
+    cursor: "0x4d4d4c"
+    text: "0xffffff"
+  primary:
+    background: "0xfafafa"
+    foreground: "0x000000"
+  bright:
+    black: "0x595959"
+    blue: "0x0031a9"
+    cyan: "0x005e8b"
+    green: "0x006800"
+    magenta: "0x8f0075"
+    red: "0xa60000"
+    white: "0xf0f0f0"
+    yellow: "0x6f5500"
+  normal:
+    black: "0x000000"
+    blue: "0x0031a9"
+    cyan: "0x005e8b"
+    green: "0x006800"
+    magenta: "0x8f0075"
+    red: "0xa60000"
+    white: "0xffffff"
+    yellow: "0x6f5500"
+
+cursor:
+  style: "Block"
+  unfocused_hollow: true
+
+env:
+  TERM: "xterm-256color"
+
+font:
+  size: 15.0
+  bold:
+    family: "JetBrains Mono"
+    style: "Bold"
+  italic:
+    family: "JetBrains Mono"
+    style: "Italic"
+  normal:
+    family: "JetBrains Mono"
+    style: "Regular"
+
+mouse:
+  hide_when_typing: true
+
+scrolling:
+  history: 5000
+  multiplier: 3
+
+selection:
+  save_to_clipboard: true
+  semantic_escape_chars: ",│`|:\"' ()[]{}<>"
+
+window:
+  dynamic_padding: false
+  opacity: 1.0
+  startup_mode: "Maximized"
+  padding:
+    x: 8
+    y: 2
+
