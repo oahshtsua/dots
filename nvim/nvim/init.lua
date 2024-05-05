@@ -51,6 +51,23 @@ require("lazy").setup({
 		event = "InsertEnter",
 		config = true,
 	},
+	{
+		"nvim-treesitter/nvim-treesitter",
+		build = ":TSUpdate",
+	},
+})
+
+-- Treesitter
+require("nvim-treesitter.configs").setup({
+	ensure_installed = {},
+	auto_install = true,
+	highlight = {
+		enable = true,
+		additional_vim_regex_highlighting = false,
+	},
+	indent = {
+		enable = true,
+	},
 })
 
 -- Keymaps --
