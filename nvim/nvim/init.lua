@@ -63,6 +63,7 @@ require("lazy").setup({
 			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
 		},
 	},
+	{ "neovim/nvim-lspconfig" },
 })
 
 -- Treesitter
@@ -96,6 +97,36 @@ require("telescope").setup({
 })
 require("telescope").load_extension("fzf")
 
+-- LSP
+local lspconfig = require("lspconfig")
+local lsp_servers = {
+	gopls = {},
+	pyright = {},
+	tsserver = {},
+}
+
+for server, config in pairs(lsp_servers) do
+	lspconfig[server].setup(config)
+end
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
+	callback = function(event)
+		-- Enable omnicomplete
+		vim.bo[event.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
+		-- Buffer local mappings.
+		-- See :help vim.lsp.* for documentation on any of the below functions
+		local opts = { buffer = event.buf }
+		vim.keymap.set("n", "K", vim.lsp.buf.hover, opts)
+		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
+		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
+		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
+		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
+		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+	end,
+})
+
 -- Keymaps --
 -- General
 vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>")
@@ -114,6 +145,9 @@ vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Move focus to the le
 vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Move focus to the lower window" })
 vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Move focus to the upper window" })
 vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Move focus to the right window" })
+
+-- Completion
+vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 
 -- Telescope
 local builtin = require("telescope.builtin")
