@@ -110,10 +110,10 @@ vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
 -- Splits
 vim.keymap.set("n", "<leader>wv", "<cmd>wincmd v<cr>")
 
-vim.keymap.set("n", "<leader>wh", "<cmd>wincmd h<cr>")
-vim.keymap.set("n", "<leader>wj", "<cmd>wincmd j<cr>")
-vim.keymap.set("n", "<leader>wk", "<cmd>wincmd k<cr>")
-vim.keymap.set("n", "<leader>wl", "<cmd>wincmd l<cr>")
+vim.keymap.set("n", "<C-h>", "<cmd>wincmd h<cr>", { desc = "Move focus to the left window" })
+vim.keymap.set("n", "<C-j>", "<cmd>wincmd j<cr>", { desc = "Move focus to the lower window" })
+vim.keymap.set("n", "<C-k>", "<cmd>wincmd k<cr>", { desc = "Move focus to the upper window" })
+vim.keymap.set("n", "<C-l>", "<cmd>wincmd l<cr>", { desc = "Move focus to the right window" })
 
 -- Telescope
 local builtin = require("telescope.builtin")
