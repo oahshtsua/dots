@@ -55,6 +55,14 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
+	{
+		"nvim-telescope/telescope.nvim",
+		branch = "0.1.x",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
+		},
+	},
 })
 
 -- Treesitter
@@ -69,6 +77,24 @@ require("nvim-treesitter.configs").setup({
 		enable = true,
 	},
 })
+
+-- Telescope
+require("telescope").setup({
+	defaults = {
+		layout_strategy = "horizontal",
+		layout_config = {
+			horizontal = {
+				prompt_position = "top",
+				width = { padding = 0 },
+				height = { padding = 0 },
+				preview_width = 0.6,
+			},
+		},
+		sorting_strategy = "ascending",
+		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+	},
+})
+require("telescope").load_extension("fzf")
 
 -- Keymaps --
 -- General
@@ -89,6 +115,11 @@ vim.keymap.set("n", "<leader>wj", "<cmd>wincmd j<cr>")
 vim.keymap.set("n", "<leader>wk", "<cmd>wincmd k<cr>")
 vim.keymap.set("n", "<leader>wl", "<cmd>wincmd l<cr>")
 
+-- Telescope
+local builtin = require("telescope.builtin")
+vim.keymap.set("n", "<leader>ff", builtin.find_files)
+vim.keymap.set("n", "<leader>fs", builtin.live_grep)
+vim.keymap.set("n", "<leader>fb", builtin.buffers)
 
 -- Colorscheme --
 vim.cmd("colorscheme operandi")
