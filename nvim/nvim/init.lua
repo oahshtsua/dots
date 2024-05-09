@@ -64,6 +64,7 @@ require("lazy").setup({
 		},
 	},
 	{ "neovim/nvim-lspconfig" },
+	{ "stevearc/conform.nvim" },
 })
 
 -- Treesitter
@@ -125,6 +126,24 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 	end,
+})
+
+-- Conform
+require("conform").setup({
+	format_on_save = {
+		lsp_fallback = true,
+		async = true,
+		timeout_ms = 500,
+	},
+	formatters_by_ft = {
+		go = { "goimports" },
+		javascript = { "prettierd" },
+		javascriptreact = { "prettierd" },
+		lua = { "stylua" },
+		python = { "isort", "ruff_format" },
+		typescript = { "prettierd" },
+		typescriptreact = { "prettierd" },
+	},
 })
 
 -- Keymaps --
