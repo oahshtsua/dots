@@ -55,14 +55,7 @@ require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
 	},
-	{
-		"nvim-telescope/telescope.nvim",
-		branch = "0.1.x",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" },
-		},
-	},
+	{ "ibhagwan/fzf-lua" },
 	{ "neovim/nvim-lspconfig" },
 	{ "stevearc/conform.nvim" },
 })
@@ -80,23 +73,36 @@ require("nvim-treesitter.configs").setup({
 	},
 })
 
--- Telescope
-require("telescope").setup({
-	defaults = {
-		layout_strategy = "horizontal",
-		layout_config = {
-			horizontal = {
-				prompt_position = "top",
-				width = { padding = 0 },
-				height = { padding = 0 },
-				preview_width = 0.6,
-			},
+-- FzfLua
+require("fzf-lua").setup({
+	winopts = {
+		height = 1,
+		width = 1,
+		border = "single",
+		preview = {
+			title = false,
+			layout = "vertical",
 		},
-		sorting_strategy = "ascending",
-		borderchars = { "─", "│", "─", "│", "┌", "┐", "┘", "└" },
+	},
+	fzf_colors = {
+		["fg"] = { "fg", "Comment" },
+		["bg"] = { "bg", "Normal" },
+		["hl"] = { "fg", "Function" },
+		["fg+"] = { "fg", "Normal" },
+		["bg+"] = { "bg", "CursorLine" },
+		["hl+"] = { "fg", "Function" },
+		["info"] = { "fg", "Comment" },
+		["prompt"] = { "fg", "Normal" },
+		["pointer"] = { "fg", "Normal" },
+		["marker"] = { "fg", "Type" },
+		["spinner"] = { "fg", "Normal" },
+		["header"] = { "fg", "Comment" },
+		["gutter"] = "-1",
+	},
+	defaults = {
+		cwd_prompt = false,
 	},
 })
-require("telescope").load_extension("fzf")
 
 -- LSP
 local lspconfig = require("lspconfig")
@@ -171,11 +177,13 @@ vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
 
--- Telescope
-local builtin = require("telescope.builtin")
-vim.keymap.set("n", "<leader>ff", builtin.find_files)
-vim.keymap.set("n", "<leader>fs", builtin.live_grep)
-vim.keymap.set("n", "<leader>fb", builtin.buffers)
+-- Fzf
+local fzf = require("fzf-lua")
+vim.keymap.set("n", "<leader>ff", fzf.files)
+vim.keymap.set("n", "<leader>fs", fzf.live_grep)
+vim.keymap.set("n", "<leader>fw", fzf.grep_cword)
+vim.keymap.set("n", "<leader>fr", fzf.resume)
+vim.keymap.set("n", "<leader>fh", fzf.command_history)
 
 -- Colorscheme --
 vim.cmd("colorscheme operandi")
