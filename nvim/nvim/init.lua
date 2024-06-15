@@ -156,6 +156,8 @@ vim.keymap.set("n", "<leader>wq", "<cmd>wq<cr>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<leader>n", "<cmd>:Lexplore<cr>")
+vim.keymap.set("i", "<C-h>", "<C-Left>", { desc = "Move cursor left" })
+vim.keymap.set("i", "<C-l>", "<C-Right>", { desc = "Move cursor right" })
 
 -- Highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
