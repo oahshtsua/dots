@@ -144,7 +144,7 @@ require("conform").setup({
 		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },
 		lua = { "stylua" },
-		python = { "isort", "ruff_format" },
+		python = { "ruff_organize_imports", "ruff_format" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 	},
