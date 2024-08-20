@@ -204,6 +204,11 @@ local hi_groups = {
 	DiagnosticInfo = { fg = palette.cyan },
 	DiagnosticHint = { fg = palette.fg_dim },
 	DiagnosticOk = { fg = palette.fg_dim },
+	DiagnosticUnderlineError = { undercurl = true, sp = palette.red },
+	DiagnosticUnderlineWarn = { undercurl = true, sp = palette.yellow },
+	DiagnosticUnderlineInfo = { undercurl = true, sp = palette.cyan },
+	DiagnosticUnderlineHint = { undercurl = true, sp = palette.fg_dim },
+	DiagnosticUnderlineOk = { undercurl = true, sp = palette.fg_dim },
 }
 
 if vim.g.color_name then
