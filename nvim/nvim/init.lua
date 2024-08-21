@@ -60,6 +60,7 @@ require("lazy").setup({
 	{ "ibhagwan/fzf-lua" },
 	{ "neovim/nvim-lspconfig" },
 	{ "stevearc/conform.nvim" },
+	{ "lukas-reineke/indent-blankline.nvim" },
 })
 
 -- Treesitter
@@ -135,6 +136,12 @@ require("conform").setup({
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 	},
+})
+
+-- Indent
+require("ibl").setup({
+	indent = { char = "▏", tab_char = "▏" },
+	scope = { enabled = false },
 })
 
 -- Keymaps --
