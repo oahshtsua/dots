@@ -9,6 +9,7 @@ vim.opt.sidescrolloff = 10
 vim.opt.mouse = ""
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menuone", "noinsert" }
+vim.opt.laststatus = 3
 
 -- Editing
 vim.opt.tabstop = 4
