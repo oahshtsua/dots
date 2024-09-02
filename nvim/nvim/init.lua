@@ -10,6 +10,10 @@ vim.opt.mouse = ""
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menuone", "noinsert" }
 vim.opt.laststatus = 3
+vim.wo.foldmethod = "expr"
+vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
+vim.opt.foldtext = ""
+vim.opt.foldlevelstart = 99
 
 -- Editing
 vim.opt.tabstop = 4
