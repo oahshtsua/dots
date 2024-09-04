@@ -140,6 +140,11 @@ vim.api.nvim_create_autocmd("LspAttach", {
 	end,
 })
 
+-- Diagnostics
+vim.diagnostic.config({
+	virtual_text = false,
+})
+
 -- Conform
 require("conform").setup({
 	format_on_save = {
