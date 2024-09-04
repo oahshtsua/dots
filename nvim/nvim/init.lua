@@ -13,6 +13,7 @@ vim.opt.laststatus = 3
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.o.foldlevelstart = 99
+vim.o.cmdheight = 0
 
 -- Editing
 vim.opt.tabstop = 4
