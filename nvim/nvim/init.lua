@@ -67,6 +67,7 @@ require("lazy").setup({
 	{ "stevearc/conform.nvim" },
 	{ "lewis6991/gitsigns.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
+	{ "stevearc/oil.nvim" },
 })
 
 -- Treesitter
@@ -168,6 +169,12 @@ require("ibl").setup({
 	scope = { enabled = false },
 })
 
+-- Oil
+require("oil").setup({
+	default_file_explorer = false,
+	delete_to_trash = true,
+})
+
 -- Gitsigns
 require("gitsigns").setup({
 	signs = {
@@ -248,6 +255,9 @@ vim.keymap.set("n", "<leader>fs", fzf.live_grep)
 vim.keymap.set("n", "<leader>fw", fzf.grep_cword)
 vim.keymap.set("n", "<leader>fr", fzf.resume)
 vim.keymap.set("n", "<leader>fh", fzf.command_history)
+
+-- Oil
+vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
 
 -- Colorscheme --
 vim.cmd("colorscheme operandi")
