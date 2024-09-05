@@ -32,3 +32,5 @@
 	allowedSignersFile = ~/.config/git/allowed_signers
 [commit]
 	gpgSign = true
+[push]
+	autoSetupRemote = true
