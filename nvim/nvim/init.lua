@@ -1,7 +1,7 @@
 -- Settings --
 -- Editor UI
 vim.opt.number = true
-vim.opt.relativenumber = true
+-- vim.opt.relativenumber = true
 vim.opt.cursorline = true
 vim.opt.signcolumn = "yes"
 vim.opt.scrolloff = 10
@@ -86,15 +86,30 @@ require("nvim-treesitter.configs").setup({
 -- FzfLua
 require("fzf-lua").setup({
 	winopts = {
-		height = 0.95,
-		width = 0.8,
-		row = 0.1,
+		height = 0.98,
+		width = 0.9,
+		-- row = 0.1,
 		border = "single",
 		preview = {
 			title = false,
-			vertical = "down:50%",
+			vertical = "down:60%",
 			layout = "vertical",
 		},
+	},
+	fzf_colors = {
+		["fg"] = { "fg", "CursorLine" },
+		["bg"] = { "bg", "Normal" },
+		["hl"] = { "fg", "Comment" },
+		["fg+"] = { "fg", "Normal" },
+		["bg+"] = { "bg", "CursorLine" },
+		["hl+"] = { "fg", "PreProc" },
+		["info"] = { "fg", "PreProc" },
+		["prompt"] = { "fg", "Conditional" },
+		["pointer"] = { "fg", "Exception" },
+		["marker"] = { "fg", "Keyword" },
+		["spinner"] = { "fg", "Label" },
+		["header"] = { "fg", "Comment" },
+		["gutter"] = "-1",
 	},
 	defaults = {
 		cwd_prompt = false,
@@ -119,6 +134,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		-- Buffer local mappings.
 		-- See :help vim.lsp.* for documentation on any of the below functions
 		local opts = { buffer = event.buf }
+		local fzf = require("fzf-lua")
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
@@ -144,9 +160,10 @@ require("conform").setup({
 		javascript = { "prettierd" },
 		javascriptreact = { "prettierd" },
 		lua = { "stylua" },
-		python = { "ruff_organize_imports", "ruff_format" },
+		-- python = { "ruff_organize_imports", "ruff_format" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
+		htmldjango = { "djlint" },
 	},
 })
 
@@ -245,7 +262,9 @@ vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagn
 local fzf = require("fzf-lua")
 vim.keymap.set("n", "<leader>ff", fzf.files)
 vim.keymap.set("n", "<leader>fs", fzf.live_grep)
-
+vim.keymap.set("n", "<leader>fw", fzf.grep_cword)
+vim.keymap.set("n", "<leader>fr", fzf.resume)
+vim.keymap.set("n", "<leader>fh", fzf.command_history)
 -- Oil
 vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
 
