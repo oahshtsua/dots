@@ -86,14 +86,11 @@ require("nvim-treesitter.configs").setup({
 -- FzfLua
 require("fzf-lua").setup({
 	winopts = {
-		height = 0.95,
-		width = 0.8,
-		row = 0.1,
+		height = 0.98,
+		width = 1,
 		border = "single",
 		preview = {
 			title = false,
-			vertical = "down:50%",
-			layout = "vertical",
 		},
 	},
 	defaults = {
