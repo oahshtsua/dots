@@ -95,6 +95,21 @@ require("fzf-lua").setup({
 			title = false,
 		},
 	},
+	fzf_colors = {
+		["fg"] = { "fg", "Comment" },
+		["bg"] = { "bg", "Normal" },
+		["hl"] = { "fg", "Function" },
+		["fg+"] = { "fg", "Normal" },
+		["bg+"] = { "bg", "CursorLine" },
+		["hl+"] = { "fg", "Function" },
+		["info"] = { "fg", "Comment" },
+		["prompt"] = { "fg", "Normal" },
+		["pointer"] = { "fg", "Normal" },
+		["marker"] = { "fg", "Type" },
+		["spinner"] = { "fg", "Normal" },
+		["header"] = { "fg", "Comment" },
+		["gutter"] = "-1",
+	},
 	defaults = {
 		cwd_prompt = false,
 	},
@@ -121,7 +136,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
+		-- vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
 		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 	end,
@@ -266,7 +281,10 @@ end)
 local fzf = require("fzf-lua")
 vim.keymap.set("n", "<leader>ff", fzf.files)
 vim.keymap.set("n", "<leader>fs", fzf.live_grep)
-
+vim.keymap.set("n", "<leader>fw", fzf.grep_cword)
+vim.keymap.set("n", "<leader>fr", fzf.resume)
+vim.keymap.set("n", "<leader>fh", fzf.command_history)
+vim.keymap.set("n", "gr", fzf.lsp_references)
 -- Oil
 vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
 
