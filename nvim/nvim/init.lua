@@ -28,7 +28,8 @@ vim.opt.clipboard = "unnamedplus"
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 vim.opt.list = true
-vim.opt.listchars = { tab = "⟶ ", trail = "*", nbsp = "␣" }
+vim.opt.listchars:append({ tab = "⟶ ", trail = "*", nbsp = "␣" })
+vim.opt.fillchars:append({ diff = "╱" })
 
 -- Netrw
 vim.g.netrw_banner = 0
@@ -64,6 +65,7 @@ require("lazy").setup({
 	},
 	{ "ibhagwan/fzf-lua" },
 	{ "neovim/nvim-lspconfig" },
+	{ "sindrets/diffview.nvim" },
 	{ "stevearc/conform.nvim" },
 	{ "lewis6991/gitsigns.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
@@ -237,6 +239,28 @@ vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 -- Diagnostics
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+
+--Diffview
+require("diffview").setup({
+	file_panel = {
+		listing_style = "list",
+	},
+	view = {
+		default = {
+			layout = "diff2_vertical",
+		},
+		merge_tool = {
+			layout = "diff1_plain",
+		},
+	},
+})
+vim.keymap.set("n", "<leader>dv", function()
+	if next(require("diffview.lib").views) == nil then
+		vim.cmd("DiffviewOpen")
+	else
+		vim.cmd("DiffviewClose")
+	end
+end)
 
 -- Fzf
 local fzf = require("fzf-lua")
