@@ -169,6 +169,7 @@ require("gitsigns").setup({
 	},
 
 	signs_staged_enable = false,
+	current_line_blame = true,
 
 	on_attach = function(bufnr)
 		local gitsigns = require("gitsigns")
