@@ -104,6 +104,11 @@ local lsp_servers = {
 	gopls = {},
 	pyright = {},
 	tsserver = {},
+	typst_lsp = {
+		settings = {
+			exportPdf = "onSave",
+		},
+	},
 }
 
 for server, config in pairs(lsp_servers) do
@@ -144,6 +149,7 @@ require("conform").setup({
 		python = { "ruff_organize_imports", "ruff_format" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
+		typst = { "typstyle" },
 	},
 })
 
