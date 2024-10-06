@@ -22,6 +22,8 @@
 	stp = stash pop
 	sts = stash save --include-untracked
 	sw = switch
+	sh = show
+	ss = show --stat
 [core]
 	editor = nvim
 [gpg]
