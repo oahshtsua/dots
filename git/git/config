@@ -5,7 +5,8 @@
 [diff]
 	algorithm = histogram
 [alias]
-	a = add
+	a = add -p
+	aa = add -A
 	cma = commit --amend
 	cm = commit
 	co = checkout
