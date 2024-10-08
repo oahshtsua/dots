@@ -44,18 +44,18 @@ unfocused_hollow = true
 TERM = "xterm-256color"
 
 [font]
-size = 15.0
+size = 16.0
 
 [font.bold]
-family = "JetBrains Mono"
+family = "Input"
 style = "Bold"
 
 [font.italic]
-family = "JetBrains Mono"
+family = "Input"
 style = "Italic"
 
 [font.normal]
-family = "JetBrains Mono"
+family = "Input"
 style = "Regular"
 
 [mouse]
