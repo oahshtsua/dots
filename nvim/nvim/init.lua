@@ -258,3 +258,68 @@ vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
 
 -- Colorscheme --
 vim.cmd("colorscheme operandi")
+
+-- Statusline
+local status_components = {}
+
+function _G._statusline_component(name)
+	return status_components[name]()
+end
+
+function status_components.lsp()
+	local client = vim.lsp.get_clients({ bufnr = 0 })[1]
+	if client == nil then
+		return ""
+	end
+	return client.name
+end
+
+function status_components.diagnostics()
+	local levels = {
+		errors = "Error",
+		warnings = "Warn",
+		info = "Info",
+		hints = "Hint",
+	}
+
+	local diagnostics_count = function(level)
+		return vim.tbl_count(vim.diagnostic.get(0, { severity = level }))
+	end
+
+	local errors = ""
+	local warnings = ""
+	local hints = ""
+	local info = ""
+
+	if diagnostics_count("Error") ~= 0 then
+		errors = "%#DiagnosticErrorStatusLine#" .. diagnostics_count("Error") .. "%#StatusLine#"
+	end
+	if diagnostics_count("Warn") ~= 0 then
+		warnings = " %#DiagnosticWarnStatusLine#" .. diagnostics_count("Warn") .. "%#StatusLine#"
+	end
+	if diagnostics_count("Hint") ~= 0 then
+		hints = " %#DiagnosticHintStatusLine#" .. diagnostics_count("Hint") .. "%#StatusLine#"
+	end
+	if diagnostics_count("Info") ~= 0 then
+		info = " %#DiagnosticInfoStatusLine# " .. diagnostics_count["Info"] .. "%#StatusLine#"
+	end
+
+	local diagnostics = errors .. warnings .. hints .. info
+	if diagnostics ~= "" then
+		diagnostics = "(" .. diagnostics .. ")"
+	end
+	return diagnostics
+end
+
+local statusline = {
+	"%f",
+	" ",
+	"%m",
+	"%r",
+	"%=",
+	'%{%v:lua._statusline_component("lsp")%} ',
+	'%{%v:lua._statusline_component("diagnostics")%}',
+	" %3l:%-2c ",
+}
+
+vim.o.statusline = table.concat(statusline, "")
