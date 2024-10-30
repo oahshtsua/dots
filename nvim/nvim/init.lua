@@ -269,4 +269,4 @@ vim.keymap.set("n", "<leader>fh", fzf.command_history)
 vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
 
 -- Colorscheme --
-vim.cmd("colorscheme operandi")
+vim.cmd("colorscheme flexlokey")
