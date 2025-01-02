@@ -120,7 +120,7 @@ local lsp_servers = {
 	gopls = {},
 	pyright = {},
 	ts_ls = {},
-	typst_lsp = {
+	tinymist = {
 		settings = {
 			exportPdf = "onSave",
 		},
