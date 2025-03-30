@@ -63,7 +63,6 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 	{ "ibhagwan/fzf-lua" },
-	{ "neovim/nvim-lspconfig" },
 	{ "stevearc/conform.nvim" },
 	{ "lewis6991/gitsigns.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
@@ -115,33 +114,22 @@ require("fzf-lua").setup({
 })
 
 -- LSP
-local lspconfig = require("lspconfig")
 local lsp_servers = {
-	gopls = {},
-	pyright = {},
-	ts_ls = {},
-	tinymist = {
-		settings = {
-			exportPdf = "onSave",
-		},
-	},
+	"pyright",
+	"gopls",
+	"tinymist",
+	"ts_ls",
 }
 
-for server, config in pairs(lsp_servers) do
-	lspconfig[server].setup(config)
+for _, server in pairs(lsp_servers) do
+	vim.lsp.enable(server)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(event)
-		-- Buffer local mappings.
-		-- See :help vim.lsp.* for documentation on any of the below functions
 		local opts = { buffer = event.buf }
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
 		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
 	end,
 })
