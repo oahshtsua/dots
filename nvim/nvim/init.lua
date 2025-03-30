@@ -63,7 +63,6 @@ require("lazy").setup({
 		build = ":TSUpdate",
 	},
 	{ "ibhagwan/fzf-lua" },
-	{ "neovim/nvim-lspconfig" },
 	{ "stevearc/conform.nvim" },
 	{ "lewis6991/gitsigns.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
@@ -115,35 +114,67 @@ require("fzf-lua").setup({
 })
 
 -- LSP
-local lspconfig = require("lspconfig")
 local lsp_servers = {
-	gopls = {},
-	pyright = {},
-	terraformls = {},
-	ts_ls = {},
+	gopls = {
+		cmd = { "gopls" },
+		filetypes = { "go", "gomod", "gowork", "gotmpl" },
+		single_file_support = true,
+	},
+	pyright = {
+		cmd = { "pyright-langserver", "--stdio" },
+		filetypes = { "python" },
+		settings = {
+			python = {
+				analysis = {
+					autoSearchPaths = true,
+					diagnosticMode = "openFilesOnly",
+					useLibraryCodeForTypes = true,
+				},
+			},
+		},
+		single_file_support = true,
+	},
+	terraformls = {
+		cmd = { "terraform-ls", "serve" },
+		filetypes = { "terraform", "terraform-vars" },
+	},
+	ts_ls = {
+		cmd = { "typescript-language-server", "--stdio" },
+		filetypes = {
+			"javascript",
+			"javascriptreact",
+			"javascript.jsx",
+			"typescript",
+			"typescriptreact",
+			"typescript.tsx",
+		},
+		init_options = {
+			hostInfo = "neovim",
+		},
+		single_file_support = true,
+	},
 	tinymist = {
+		cmd = { "tinymist" },
+		filetypes = { "typst" },
 		settings = {
 			exportPdf = "onSave",
 		},
+		single_file_support = true,
 	},
 }
 
 for server, config in pairs(lsp_servers) do
-	lspconfig[server].setup(config)
+	vim.lsp.config(server, config)
+	vim.lsp.enable(server)
 end
 
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("UserLspConfig", {}),
 	callback = function(event)
-		-- Buffer local mappings.
-		-- See :help vim.lsp.* for documentation on any of the below functions
-		local opts = { buffer = event.buf }
-		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
-		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
-		vim.keymap.set("n", "gi", vim.lsp.buf.implementation, opts)
-		vim.keymap.set("n", "gr", vim.lsp.buf.references, opts)
-		vim.keymap.set("n", "<space>rn", vim.lsp.buf.rename, opts)
-		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
+		local client = vim.lsp.get_client_by_id(event.data.client_id)
+		if client:supports_method("textDocument/completion") then
+			vim.lsp.completion.enable(true, client.id, event.buf, { autotrigger = true })
+		end
 	end,
 })
 
