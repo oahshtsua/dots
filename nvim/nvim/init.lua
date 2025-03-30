@@ -119,6 +119,7 @@ local lspconfig = require("lspconfig")
 local lsp_servers = {
 	gopls = {},
 	pyright = {},
+	terraformls = {},
 	ts_ls = {},
 	tinymist = {
 		settings = {
@@ -164,6 +165,7 @@ require("conform").setup({
 		javascriptreact = { "prettierd" },
 		lua = { "stylua" },
 		python = { "ruff_organize_imports", "ruff_format" },
+		tf = { "terraform_fmt" },
 		typescript = { "prettierd" },
 		typescriptreact = { "prettierd" },
 		typst = { "typstyle" },
