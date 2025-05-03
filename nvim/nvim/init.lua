@@ -69,6 +69,26 @@ require("lazy").setup({
 	{ "lewis6991/gitsigns.nvim" },
 	{ "lukas-reineke/indent-blankline.nvim" },
 	{ "stevearc/oil.nvim" },
+	{ "saghen/blink.cmp" },
+})
+
+-- Blink
+require("blink.cmp").setup({
+	keymap = { preset = "enter" },
+
+	appearance = {
+		nerd_font_variant = "none",
+	},
+
+	completion = {
+		menu = {
+			draw = {
+				columns = {
+					{ "label", "label_description", gap = 1 },
+				},
+			},
+		},
+	},
 })
 
 -- Treesitter
