@@ -14,6 +14,7 @@ vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
+vim.opt.statuscolumn = "%C%s%l  "
 
 -- Editing
 vim.opt.tabstop = 4
