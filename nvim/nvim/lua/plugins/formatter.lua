@@ -5,6 +5,8 @@ return {
 			go = { "goimports" },
 			lua = { "stylua" },
 			python = { "ruff_organize_imports", "ruff_format" },
+			terraform = { "terraform_fmt" },
+			tf = { "terraform_fmt" },
 			typst = { "typstyle" },
 		}
 

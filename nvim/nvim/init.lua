@@ -62,6 +62,7 @@ require("lazy").setup({
 local lsp_servers = {
 	"pyright",
 	"gopls",
+	"terraformls",
 	"tinymist",
 	"ts_ls",
 }
