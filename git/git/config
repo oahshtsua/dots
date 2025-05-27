@@ -37,3 +37,5 @@
 	gpgSign = true
 [push]
 	autoSetupRemote = true
+[include]
+	path = ~/.userinfo
