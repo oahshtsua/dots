@@ -60,7 +60,7 @@ require("lazy").setup({
 
 -- LSP
 local lsp_servers = {
-	"pyrefly",
+	"pyright",
 	"gopls",
 	"terraformls",
 	"tinymist",
