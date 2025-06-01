@@ -38,11 +38,8 @@ local hi_groups = {
 	-- CursorIM       { }, -- Like Cursor, but used when in IME mode |CursorIM|
 	CursorColumn = { bg = palette.ui },
 	CursorLine = { bg = palette.ui },
+
 	Directory = { fg = palette.bl_600, bold = true }, -- Directory names (and other special names in listings)
-	DiffAdd = { fg = palette.gr_400 }, -- Diff mode: Added line |diff.txt|
-	DiffChange = { fg = palette.ye_400 }, -- Diff mode: Changed line |diff.txt|
-	DiffDelete = { fg = palette.re_400 }, -- Diff mode: Deleted line |diff.txt|
-	DiffText = { bg = palette.blue_subtle },
 	-- EndOfBuffer    { }, -- Filler lines (~) after the end of the buffer. By default, this is highlighted like |hl-NonText|.
 	-- TermCursor     { }, -- Cursor in a focused terminal
 	-- TermCursorNC   { }, -- Cursor in an unfocused terminal
@@ -61,7 +58,7 @@ local hi_groups = {
 	CursorLineSign = { link = "CursorLine" }, -- Like SignColumn when 'cursorline' is set for the cursor line
 	MatchParen = { bg = palette.ui_3, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 	-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
-	MsgArea = { bg = palette.bg_2 }, -- Area for messages and cmdline
+	MsgArea = { bg = palette.ui_2 }, -- Area for messages and cmdline
 	-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 	-- MoreMsg        { }, -- |more-prompt|
 	NonText = { fg = palette.tx_3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
@@ -87,7 +84,7 @@ local hi_groups = {
 	-- SpellLocal     { }, -- Word that is recognized by the spellchecker as one that is used in another region. |spell| Combined with the highlighting used otherwise.
 	-- SpellRare      { }, -- Word that is recognized by the spellchecker as one that is hardly ever used. |spell| Combined with the highlighting used otherwise.
 	StatusLine = { bg = palette.ui_2 }, -- Status line of current window
-	-- StatusLineNC = { link = "Normal" }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
+	StatusLineNC = { bg = palette.ui_2 }, -- Status lines of not-current windows. Note: If this is equal to "StatusLine" Vim will use "^^^" in the status line of the current window.
 	TabLine = { bg = palette.ui_2 }, -- Tab pages line, not active tab page label
 	-- TabLineFill    { }, -- Tab pages line, where there are no labels
 	TabLineSel = { bg = palette.ui }, -- Tab pages line, active tab page label

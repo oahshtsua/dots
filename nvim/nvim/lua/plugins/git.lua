@@ -8,7 +8,10 @@ return {
 			topdelete = { text = "▍" },
 		},
 		signs_staged_enable = false,
-		current_line_blame = true,
+		current_line_blame = false,
+		preview_config = {
+			border = "single",
+		},
 
 		on_attach = function(bufnr)
 			local gitsigns = require("gitsigns")
@@ -40,7 +43,9 @@ return {
 			map("n", "<leader>hs", gitsigns.stage_hunk)
 			map("n", "<leader>hr", gitsigns.reset_hunk)
 			map("n", "<leader>hp", gitsigns.preview_hunk)
-			map("n", "<leader>hb", gitsigns.blame_line)
+			map("n", "<leader>hb", function()
+				gitsigns.blame_line({ full = true })
+			end)
 		end,
 	},
 }

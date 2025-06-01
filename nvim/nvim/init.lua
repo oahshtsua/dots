@@ -9,13 +9,14 @@ vim.opt.sidescrolloff = 10
 vim.opt.mouse = ""
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menuone", "noinsert" }
-vim.opt.laststatus = 3
+vim.opt.laststatus = 2
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.statuscolumn = "%C%s%l  "
 vim.opt.cmdheight = 0
+vim.opt.ruler = false
 
 -- Editing
 vim.opt.tabstop = 4
@@ -83,6 +84,9 @@ vim.api.nvim_create_autocmd("LspAttach", {
 -- Diagnostics
 vim.diagnostic.config({
 	virtual_text = { current_line = true },
+	float = {
+		border = "single",
+	},
 	signs = false,
 })
 
