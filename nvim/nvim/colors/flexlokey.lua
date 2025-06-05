@@ -219,6 +219,9 @@ local hi_groups = {
 	GitConflictCurrentLabel = { bg = palette.bl_400 },
 	GitConflictIncomingLabel = { bg = palette.gr_400 },
 	GitConflictAncestorLabel = { bg = palette.ui_3 },
+
+	TreesitterContext = { bg = palette.ui },
+	TreesitterContextLineNumber = { bg = palette.ui },
 }
 
 if vim.g.color_name then
