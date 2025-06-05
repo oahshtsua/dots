@@ -14,8 +14,8 @@
 	dfs = diff --staged
 	lga = log --oneline --graph --all
 	lg = log --oneline --graph
-	rst = restore
-	rsts = restore --staged
+	rst = restore -p
+	rsts = restore --staged -p
 	s = status -s
 	sta = stash apply
 	std = stash drop

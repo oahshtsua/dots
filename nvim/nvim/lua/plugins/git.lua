@@ -14,7 +14,7 @@ return {
 				topdelete = { text = "▍" },
 			},
 			signs_staged_enable = false,
-			current_line_blame = true,
+			current_line_blame = false,
 
 			on_attach = function(bufnr)
 				local gitsigns = require("gitsigns")
