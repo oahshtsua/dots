@@ -9,13 +9,24 @@ vim.opt.sidescrolloff = 10
 vim.opt.mouse = ""
 vim.opt.termguicolors = true
 vim.opt.completeopt = { "menuone", "noinsert" }
-vim.opt.laststatus = 3
+vim.opt.laststatus = 0
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.statuscolumn = "%C%s%l  "
 vim.opt.cmdheight = 0
+
+function _G.WinbarPath()
+	local path = vim.fn.expand("%:~:.") -- Relative to home or cwd
+	if path == "" then
+		return "[No Name]"
+	end
+	local parts = vim.split(path, "/", { plain = true, trimempty = true })
+	return table.concat(parts, " > ")
+end
+
+vim.o.winbar = "%{%v:lua.WinbarPath()%} %r%m"
 
 -- Editing
 vim.opt.tabstop = 4
