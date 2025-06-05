@@ -53,7 +53,7 @@ local hi_groups = {
 	SignColumn = { bg = palette.bg }, -- Column where |signs| are displayed
 	-- IncSearch     =  { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 	-- Substitute    =  { }, -- |:substitute| replacement text highlighting
-	LineNr = { fg = palette.tx_2 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+	LineNr = { fg = palette.tx_3 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 	LineNrAbove = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 	LineNrBelow = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 	CursorLineNr = { bg = palette.ui, fg = palette.tx, bold = false }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -61,7 +61,7 @@ local hi_groups = {
 	CursorLineSign = { link = "CursorLine" }, -- Like SignColumn when 'cursorline' is set for the cursor line
 	MatchParen = { bg = palette.ui_3, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 	-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
-	MsgArea = { bg = palette.bg_2 }, -- Area for messages and cmdline
+	MsgArea = { bg = palette.ui_2 }, -- Area for messages and cmdline
 	-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 	-- MoreMsg        { }, -- |more-prompt|
 	NonText = { fg = palette.tx_3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
@@ -98,7 +98,7 @@ local hi_groups = {
 	-- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
 	Winseparator = { bg = None }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
 	-- WildMenu       { }, -- Current match in 'wildmenu' completion
-	WinBar = { bg = palette.ui_2 }, -- Window bar of current window
+	WinBar = { bg = palette.bg, fg = palette.tx_2 },
 	WinBarNC = { link = "WinBar" }, -- Window bar of not-current windows
 	SpecialKey = { fg = palette.blue },
 	IncSearch = { link = "Search" },
