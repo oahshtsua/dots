@@ -26,7 +26,7 @@ function _G.WinbarPath()
 	return table.concat(parts, " > ")
 end
 
-vim.o.winbar = "%{%v:lua.WinbarPath()%} %m"
+vim.o.winbar = "%{%v:lua.WinbarPath()%} %r%m"
 
 -- Editing
 vim.opt.tabstop = 4
