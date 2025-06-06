@@ -77,5 +77,5 @@ opacity = 1.0
 startup_mode = "Maximized"
 
 [window.padding]
-x = 8
+x = 16
 y = 2
