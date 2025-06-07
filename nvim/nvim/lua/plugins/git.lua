@@ -26,26 +26,15 @@ return {
 				end
 
 				-- Navigation
-				map("n", "]c", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "]c", bang = true })
-					else
-						gitsigns.nav_hunk("next")
-					end
+				map("n", "<leader>hp", function()
+					gitsigns.nav_hunk("prev")
 				end)
-
-				map("n", "[c", function()
-					if vim.wo.diff then
-						vim.cmd.normal({ "[c", bang = true })
-					else
-						gitsigns.nav_hunk("prev")
-					end
+				map("n", "<leader>hn", function()
+					gitsigns.nav_hunk("next")
 				end)
-
 				-- Actions
 				map("n", "<leader>hs", gitsigns.stage_hunk)
 				map("n", "<leader>hr", gitsigns.reset_hunk)
-				map("n", "<leader>hp", gitsigns.preview_hunk)
 				map("n", "<leader>hb", gitsigns.blame_line)
 			end,
 		},

@@ -104,7 +104,8 @@ vim.diagnostic.config({
 -- Keymaps --
 -- General
 vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>")
-vim.keymap.set("n", "<leader>wq", "<cmd>wq<cr>")
+vim.keymap.set("n", "<leader>sc", "<cmd>wq<cr>")
+vim.keymap.set("n", "<leader>bc", "<cmd>q<cr>")
 vim.keymap.set("n", "<C-d>", "<C-d>zz")
 vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "<C-o>", "<C-o>zz")
@@ -112,6 +113,9 @@ vim.keymap.set("n", "<C-i>", "<C-i>zz")
 vim.keymap.set("n", "<leader>n", "<cmd>:Lexplore<cr>")
 vim.keymap.set("i", "<C-h>", "<C-Left>", { desc = "Move cursor left" })
 vim.keymap.set("i", "<C-l>", "<C-Right>", { desc = "Move cursor right" })
+
+-- Pinky saver
+vim.keymap.set({ "n", "v", "x" }, "<Leader><Leader>", ":", { noremap = true, silent = false })
 
 -- Highlight
 vim.keymap.set("n", "<Esc>", "<cmd>nohlsearch<cr>")
@@ -130,6 +134,8 @@ vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 -- Diagnostics
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
+vim.keymap.set("n", "<leader>dn", vim.diagnostic.goto_next, { desc = "" })
+vim.keymap.set("n", "<leader>dp", vim.diagnostic.goto_prev, { desc = "" })
 
 -- Fzf
 local fzf = require("fzf-lua")
