@@ -30,7 +30,7 @@ local palette = {
 }
 
 local hi_groups = {
-	ColorColumn = { bg = palette.ui }, -- Columns set with 'colorcolumn'
+	ColorColumn = { bg = palette.ui_2 }, -- Columns set with 'colorcolumn'
 	-- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
 	-- Cursor         { }, -- Character under the cursor
 	-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
@@ -120,22 +120,22 @@ local hi_groups = {
 
 	Comment = { fg = palette.tx_2, italic = true }, -- Any comment
 
-	Constant = { fg = palette.ma_600 }, -- (*) Any constant
+	-- Constant = { fg = palette.ma_600 }, -- (*) Any constant
 	String = { fg = palette.cy_600 }, --   A string constant: "this is a string"
-	Character = { link = "Constant" }, --   A character constant: 'c', '\n'
-	Number = { link = "Constant" }, --   A number constant: 234, 0xff
-	Boolean = { link = "Constant" }, --   A boolean constant: TRUE, false
+	Character = { fg = palette.ma_600 }, --   A character constant: 'c', '\n'
+	Number = { fg = palette.ma_600 }, --   A number constant: 234, 0xff
+	Boolean = { fg = palette.ma_600 }, --   A boolean constant: TRUE, false
 	Float = { link = "Number" }, --   A floating point constant: 2.3e10
 
 	Identifier = { fg = palette.tx }, -- (*) Any variable name
 	Function = { fg = palette.or_600 },
 
 	Statement = { fg = palette.tx }, -- (*) Any statement
-	Conditional = { link = "Statement" }, --   if, then, else, endif, switch, etc.
+	Conditional = { link = "Keyword" }, --   if, then, else, endif, switch, etc.
 	Repeat = { link = "Statement" }, --   for, do, while, etc.
 	Label = { link = "Statement" }, --   case, default, etc.
 	Operator = { link = "Statement" }, --   "sizeof", "+", "*", etc.
-	Keyword = { fg = palette.bl_600 }, --   any other keyword
+	Keyword = { fg = "#343331", bold = true }, --   any other keyword
 	Exception = { link = "Statement" }, --   try, catch, throw
 
 	PreProc = { fg = palette.ye_600 }, -- (*) Generic Preprocessor
@@ -144,15 +144,15 @@ local hi_groups = {
 	Macro = { link = "PreProc" }, --   Same as Define
 	PreCondit = { link = "PreProc" }, --   Preprocessor #if, #else, #endif, etc.
 
-	Type = { fg = palette.cy_600 }, -- (*) int, long, char, etc.
+	Type = { fg = palette.tx }, -- (*) int, long, char, etc.
 	-- StorageClass   = { }, --   static, register, volatile, etc.
 	-- Structure      = { }, --   struct, union, enum, etc.
-	-- Typedef        = { }, --   A typedef
+	Typedef = { bg = palette.gr_400 }, --   A typedef
 
 	-- Special        = { }, -- (*) Any special symbol
 	-- SpecialChar    = { }, --   Special character in a constant
-	-- Tag            = { }, --   You can use CTRL-] on this
-	-- Delimiter      = { }, --   Character that needs attention
+	Tag = { bg = palette.bl_400 }, --   You can use CTRL-] on this
+	-- Delimiter = { bg = palette.re_400 }, --   Character that needs attention
 	-- SpecialComment = { }, --   Special things inside a comment (e.g. '\n')
 	-- Debug          = { }, --   Debugging statements
 
