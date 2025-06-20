@@ -1,5 +1,8 @@
 live_config_reload = true
 
+[terminal]
+shell = "/usr/bin/fish"
+
 [bell]
 animation = "EaseOutExpo"
 color = "0xffffff"
