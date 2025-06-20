@@ -30,7 +30,7 @@ local palette = {
 }
 
 local hi_groups = {
-	ColorColumn = { bg = palette.ui }, -- Columns set with 'colorcolumn'
+	ColorColumn = { bg = palette.ui_2 }, -- Columns set with 'colorcolumn'
 	-- Conceal        { }, -- Placeholder characters substituted for concealed text (see 'conceallevel')
 	-- Cursor         { }, -- Character under the cursor
 	-- CurSearch      { }, -- Highlighting a search pattern under the cursor (see 'hlsearch')
@@ -53,7 +53,7 @@ local hi_groups = {
 	SignColumn = { bg = palette.bg }, -- Column where |signs| are displayed
 	-- IncSearch     =  { }, -- 'incsearch' highlighting; also used for the text replaced with ":s///c"
 	-- Substitute    =  { }, -- |:substitute| replacement text highlighting
-	LineNr = { fg = palette.tx_2 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
+	LineNr = { fg = palette.tx_3 }, -- Line number for ":number" and ":#" commands, and when 'number' or 'relativenumber' option is set.
 	LineNrAbove = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 	LineNrBelow = { link = "LineNr" }, -- Line number for when the 'relativenumber' option is set, above the cursor line
 	CursorLineNr = { bg = palette.ui, fg = palette.tx, bold = false }, -- Like LineNr when 'cursorline' or 'relativenumber' is set for the cursor line.
@@ -61,7 +61,7 @@ local hi_groups = {
 	CursorLineSign = { link = "CursorLine" }, -- Like SignColumn when 'cursorline' is set for the cursor line
 	MatchParen = { bg = palette.ui_3, bold = true }, -- Character under the cursor or just before it, if it is a paired bracket, and its match. |pi_paren.txt|
 	-- ModeMsg        { }, -- 'showmode' message (e.g., "-- INSERT -- ")
-	MsgArea = { bg = palette.bg_2 }, -- Area for messages and cmdline
+	MsgArea = { bg = palette.ui_2 }, -- Area for messages and cmdline
 	-- MsgSeparator   { }, -- Separator for scrolled messages, `msgsep` flag of 'display'
 	-- MoreMsg        { }, -- |more-prompt|
 	NonText = { fg = palette.tx_3 }, -- '@' at the end of the window, characters from 'showbreak' and other characters that do not really exist in the text (e.g., ">" displayed when a double-wide character doesn't fit at the end of the line). See also |hl-EndOfBuffer|.
@@ -98,7 +98,7 @@ local hi_groups = {
 	-- Whitespace     { }, -- "nbsp", "space", "tab" and "trail" in 'listchars'
 	Winseparator = { bg = None }, -- Separator between window splits. Inherts from |hl-VertSplit| by default, which it will replace eventually.
 	-- WildMenu       { }, -- Current match in 'wildmenu' completion
-	WinBar = { bg = palette.ui_2 }, -- Window bar of current window
+	WinBar = { bg = palette.bg, fg = palette.tx_2 },
 	WinBarNC = { link = "WinBar" }, -- Window bar of not-current windows
 	SpecialKey = { fg = palette.blue },
 	IncSearch = { link = "Search" },
@@ -120,22 +120,22 @@ local hi_groups = {
 
 	Comment = { fg = palette.tx_2, italic = true }, -- Any comment
 
-	Constant = { fg = palette.ma_600 }, -- (*) Any constant
+	-- Constant = { fg = palette.ma_600 }, -- (*) Any constant
 	String = { fg = palette.cy_600 }, --   A string constant: "this is a string"
-	Character = { link = "Constant" }, --   A character constant: 'c', '\n'
-	Number = { link = "Constant" }, --   A number constant: 234, 0xff
-	Boolean = { link = "Constant" }, --   A boolean constant: TRUE, false
+	Character = { fg = palette.ma_600 }, --   A character constant: 'c', '\n'
+	Number = { fg = palette.ma_600 }, --   A number constant: 234, 0xff
+	Boolean = { fg = palette.ma_600 }, --   A boolean constant: TRUE, false
 	Float = { link = "Number" }, --   A floating point constant: 2.3e10
 
 	Identifier = { fg = palette.tx }, -- (*) Any variable name
 	Function = { fg = palette.or_600 },
 
 	Statement = { fg = palette.tx }, -- (*) Any statement
-	Conditional = { link = "Statement" }, --   if, then, else, endif, switch, etc.
+	Conditional = { link = "Keyword" }, --   if, then, else, endif, switch, etc.
 	Repeat = { link = "Statement" }, --   for, do, while, etc.
 	Label = { link = "Statement" }, --   case, default, etc.
 	Operator = { link = "Statement" }, --   "sizeof", "+", "*", etc.
-	Keyword = { fg = palette.bl_600 }, --   any other keyword
+	Keyword = { fg = "#343331", bold = true }, --   any other keyword
 	Exception = { link = "Statement" }, --   try, catch, throw
 
 	PreProc = { fg = palette.ye_600 }, -- (*) Generic Preprocessor
@@ -144,15 +144,15 @@ local hi_groups = {
 	Macro = { link = "PreProc" }, --   Same as Define
 	PreCondit = { link = "PreProc" }, --   Preprocessor #if, #else, #endif, etc.
 
-	Type = { fg = palette.cy_600 }, -- (*) int, long, char, etc.
+	Type = { fg = palette.tx }, -- (*) int, long, char, etc.
 	-- StorageClass   = { }, --   static, register, volatile, etc.
 	-- Structure      = { }, --   struct, union, enum, etc.
-	-- Typedef        = { }, --   A typedef
+	Typedef = { bg = palette.gr_400 }, --   A typedef
 
 	-- Special        = { }, -- (*) Any special symbol
 	-- SpecialChar    = { }, --   Special character in a constant
 	-- Tag            = { }, --   You can use CTRL-] on this
-	-- Delimiter      = { }, --   Character that needs attention
+	-- Delimiter = { bg = palette.re_400 }, --   Character that needs attention
 	-- SpecialComment = { }, --   Special things inside a comment (e.g. '\n')
 	-- Debug          = { }, --   Debugging statements
 
