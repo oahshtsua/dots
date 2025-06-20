@@ -15,7 +15,8 @@ vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
 vim.opt.statuscolumn = "%C%s%l  "
-vim.opt.cmdheight = 0
+vim.opt.cmdheight = 1
+vim.opt.ruler = false
 
 function _G.WinbarPath()
 	local path = vim.fn.expand("%:~:.") -- Relative to home or cwd
