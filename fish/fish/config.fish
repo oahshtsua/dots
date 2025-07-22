@@ -53,6 +53,8 @@ if status is-interactive
     abbr -a va      'source .venv/bin/activate.fish'
     abbr -a pca     'pre-commit run --all-files'
 
+    abbr -a encrypt 'gpg -c --no-symkey-cache --cipher-algo AES256'
+
     # Auto activate virtual env when a new shell is started
     if test -d .venv -a -f .venv/bin/activate.fish
         source .venv/bin/activate.fish
