@@ -1,23 +1,42 @@
--- Settings --
--- Editor UI
-vim.opt.number = true
-vim.opt.relativenumber = false
+-- Visuals --
 vim.opt.cursorline = true
+vim.opt.termguicolors = true
 vim.opt.signcolumn = "yes"
+vim.opt.statuscolumn = "%C%s%l  "
+vim.opt.ruler = false
+vim.opt.winborder = "single"
+vim.opt.list = true
+vim.opt.cmdheight = 0
+vim.opt.laststatus = 3
+vim.opt.statusline = " "
+
+-- Behavior --
+vim.opt.wrap = false
 vim.opt.scrolloff = 10
 vim.opt.sidescrolloff = 10
-vim.opt.mouse = ""
-vim.opt.termguicolors = true
-vim.opt.completeopt = { "menuone", "noinsert" }
-vim.opt.laststatus = 0
+vim.opt.swapfile = false
+vim.opt.clipboard = "unnamedplus"
+vim.opt.completeopt = { "menuone", "noinsert", "popup", "fuzzy" }
+
+-- Indentation --
+vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
+vim.opt.shiftwidth = 4
+vim.opt.expandtab = true
+vim.opt.smartindent = true
+
+-- Folding --
 vim.wo.foldmethod = "expr"
 vim.wo.foldexpr = "v:lua.vim.treesitter.foldexpr()"
 vim.opt.foldtext = ""
 vim.opt.foldlevelstart = 99
-vim.opt.statuscolumn = "%C%s%l  "
-vim.opt.cmdheight = 1
-vim.opt.ruler = false
 
+-- Search --
+vim.opt.ignorecase = true
+vim.opt.smartcase = true
+vim.opt.hlsearch = true
+
+-- Winbar --
 function _G.WinbarPath()
 	local path = vim.fn.expand("%:~:.") -- Relative to home or cwd
 	if path == "" then
@@ -26,28 +45,7 @@ function _G.WinbarPath()
 	local parts = vim.split(path, "/", { plain = true, trimempty = true })
 	return table.concat(parts, " > ")
 end
-
-vim.o.winbar = "%{%v:lua.WinbarPath()%} %r%m"
-
--- Editing
-vim.opt.tabstop = 4
-vim.opt.softtabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.expandtab = true
-vim.opt.smartindent = true
-vim.opt.wrap = false
-vim.opt.swapfile = false
-vim.opt.hlsearch = true
-vim.opt.clipboard = "unnamedplus"
-vim.opt.ignorecase = true
-vim.opt.smartcase = true
-vim.opt.list = true
-vim.opt.listchars = { tab = "⟶ ", trail = "*", nbsp = "␣" }
-
--- Netrw
-vim.g.netrw_banner = 0
-vim.g.netrw_winsize = 25
-vim.g.netrw_liststyle = 3
+vim.opt.winbar = "%{%v:lua.WinbarPath()%} %r%m"
 
 -- Leader
 vim.g.mapleader = " "
@@ -100,11 +98,10 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 -- Diagnostics
 vim.diagnostic.config({
-	virtual_text = { current_line = true },
+	virtual_text = true,
 	signs = false,
 })
 
---
 -- Keymaps --
 -- General
 vim.keymap.set("n", "<leader>ww", "<cmd>write<cr>")

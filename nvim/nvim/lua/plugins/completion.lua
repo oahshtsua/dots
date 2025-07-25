@@ -4,9 +4,9 @@ return {
 	version = "1.*",
 	enabled = false,
 	opts = {
-		keymap = { preset = "enter" },
+		keymap = { preset = "default" },
 		appearance = {
-			nerd_font_variant = "none",
+			-- nerd_font_variant = "none",
 		},
 		-- Disable icons
 		completion = {
