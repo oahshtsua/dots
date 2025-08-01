@@ -1,40 +1,83 @@
 #!/bin/bash
 
-# Enable case-insensitive completion
-if ! grep -qF "bind 'set completion-ignore-case on'" ~/.bashrc; then
-    echo -n "Enabling case insensitive completing..."
-    echo "bind 'set completion-ignore-case on'" >> ~/.bashrc
-    echo "Done."
-fi
+# Update package list and upgrade the system
+echo "Updating package list..."
+sudo apt update && sudo apt upgrade -y
+
+# Install required packages via APT
+echo "Installing APT packages..."
+apt_packages=(
+  curl
+  alacritty
+  fish
+  fonts-jetbrains-mono
+  fzf
+  stow
+  ripgrep
+  flatpak
+  tmux
+  trash-cli
+  fd-find
+  tree
+)
+sudo apt install -y "${apt_packages[@]}"
+
+# Add Flathub repository if it doesn't exist
+echo "Adding Flathub remote..."
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Define list of Flatpak packages
+flatpak_packages=(
+  "app.zen_browser.zen"
+  "org.signal.Signal"
+  "com.getpostman.Postman"
+  "io.dbeaver.DBeaverCommunity"
+  "com.discordapp.Discord"
+  "org.videolan.VLC"
+  "org.qbittorrent.qBittorrent"
+  "md.obsidian.Obsidian"
+  "us.zoom.Zoom"
+  "org.azahar_emu.Azahar"
+)
+
+# Install all Flatpak packages in one go
+echo "Installing Flatpak packages..."
+flatpak install -y flathub "${flatpak_packages[@]}"
+
+# Install Zed
+curl -f https://zed.dev/install.sh | sh
 
 # Install Homebrew
 if ! command -v brew &> /dev/null; then
     echo "Installing Homebrew..."
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    (echo; echo 'eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"') >> /home/oahshtsua/.bashrc
-    eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
-    echo "Done."
+
+    # Set up Homebrew for fish shell
+    echo "Adding Homebrew to fish config..."
+    fish_config="$HOME/.config/fish/config.fish"
+    brew_line='eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)'
+
+    # Add brew shellenv only if not already present
+    if ! grep -Fxq "$brew_line" "$fish_config"; then
+        echo "$brew_line" >> "$fish_config"
+    fi
+
+    # Apply brew to current shell
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+
+    echo "Homebrew installation and fish shell setup complete."
 fi
 
-packages=(
-    # Utilities
-    fd
-    fzf
+brew_packages=(
     neovim
-    ripgrep
-    starship
-    stow
-    tmux
+    ruff
+    stylua
     typst
 )
 
-echo "Installing packages..."
+echo "Installing brew packages..."
 brew install "${packages[@]}"
 echo "Done."
 
-# Enable Starship
-if ! grep -qF 'eval "$(starship init bash)"' ~/.bashrc; then
-    echo -n "Enabling Starship..."
-    echo 'eval "$(starship init bash)"' >> ~/.bashrc
-    echo "Done."
-fi
+# Confirm installation
+echo "Installation complete. Please restart your system."

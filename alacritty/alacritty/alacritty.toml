@@ -1,3 +1,4 @@
+[general]
 live_config_reload = true
 
 [terminal]
@@ -48,7 +49,7 @@ TERM = "xterm-256color"
 
 [font]
 size = 17.0
-offset.y = 2
+offset.y = 4
 
 
 [font.bold]

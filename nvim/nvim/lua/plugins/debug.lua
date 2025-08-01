@@ -6,6 +6,7 @@ return {
 				"igorlfs/nvim-dap-view",
 				opts = {
 					winbar = {
+						default_section = "scopes",
 						controls = {
 							enabled = true,
 						},

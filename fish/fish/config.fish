@@ -28,6 +28,7 @@ if status is-interactive
     abbr -a hpf     'git push --force'
     abbr -a hpl     'git pull'
     abbr -a hrb     'git rebase'
+    abbr -a hrbi    'git rebase -i HEAD~'
     abbr -a hcp     'git cherry-pick'
     abbr -a hss     'git stash save --include-untracked'
     abbr -a hsa     'git stash apply'
@@ -40,7 +41,7 @@ if status is-interactive
 
     abbr -a vim     'nvim'
     abbr -a fupd    'flatpak update'
-    abbr -a upd     'sudo dnf update && sudo dnf upgrade'
+    abbr -a upd     'sudo apt update && sudo apt upgrade'
 
     # Docker
     abbr -a dcu     'docker compose up'
@@ -54,6 +55,9 @@ if status is-interactive
     abbr -a pca     'pre-commit run --all-files'
 
     abbr -a encrypt 'gpg -c --no-symkey-cache --cipher-algo AES256'
+
+    # Brew
+    eval (/home/linuxbrew/.linuxbrew/bin/brew shellenv)
 
     # Auto activate virtual env when a new shell is started
     if test -d .venv -a -f .venv/bin/activate.fish

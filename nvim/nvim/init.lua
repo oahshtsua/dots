@@ -91,8 +91,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 		vim.keymap.set("n", "gD", vim.lsp.buf.declaration, opts)
 		vim.keymap.set("n", "gd", vim.lsp.buf.definition, opts)
 		vim.keymap.set({ "n", "v" }, "<space>ca", vim.lsp.buf.code_action, opts)
-
-		vim.lsp.completion.enable(true, event.data.client_id, event.buf, { autotrigger = true })
 	end,
 })
 
@@ -131,14 +129,6 @@ vim.keymap.set("i", "<C-Space>", "<C-x><C-o>")
 -- Diagnostics
 vim.keymap.set("n", "<leader>e", vim.diagnostic.open_float, { desc = "Show diagnostic [E]rror messages" })
 vim.keymap.set("n", "<leader>q", vim.diagnostic.setloclist, { desc = "Open diagnostic [Q]uickfix list" })
-
--- Fzf
-local fzf = require("fzf-lua")
-vim.keymap.set("n", "<leader>ff", fzf.files)
-vim.keymap.set("n", "<leader>fs", fzf.live_grep)
-vim.keymap.set("n", "<leader>fw", fzf.grep_cword)
-vim.keymap.set("n", "<leader>fr", fzf.resume)
-vim.keymap.set("n", "<leader>fh", fzf.command_history)
 
 -- Oil
 vim.keymap.set("n", "<leader>fb", "<cmd>Oil<cr>")
